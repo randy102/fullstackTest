@@ -1,0 +1,20 @@
+image: docker:19.03.0
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+
+services:
+  - docker:19.03.0-dind
+stages:
+  - test
+
+test:
+  stage: test
+  tags:
+    - training-test
+  script:
+    - docker build -t testserver .
+    - docker run -d -p 3000:3000 testserver
+    - sleep 3
+    - docker ps
+    - ./at/test1 --host docker --port 3000
