@@ -1,75 +1,49 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+## Mục tiêu của bài test
+1. JSON web token (jwt) và áp dụng jwt cho thao tác liên quan đến chứng thực (authentication) người dùng cho ứng dụng sử dụng RESTful API.
+2. Nắm được cách sử dụng controller của framework NESTJS.
+3. Nắm được các http status code phổ biến dải từ 2xx, 3xx, 4xx.
+4. Các phương thức phổ biến POST, GET và truyền tham số theo url
+## Yêu cầu
+### Case 1
+1. Ứng dụng có thể chạy được trên port được cấu hình trong file .env
+### Case 2
+1. Người dùng có thể đăng ký tài khoản khi thực hiện phương thức **POST** đến route **auth/register** với nội dung json sau
+```json
+{
+  "name": string,
+  "password": string,
+  "username": string
+}
+```
+2. Nếu đăng ký thành công trả về status code 204 thay vì 201
+3. Hai người dùng không được có cùng **username**, nếu đăng ký tài khoản với **username** đã tồn tại trả về status code 409
+4. Mật khẩu được hash
+### Case 3
+1. Người dùng có thể đăng nhập sử dụng route **/auth/login** với body bên dưới.
+```json
+{
+  "username": string,
+  "password": string
+}
+```
+2. Đăng nhập thành công sẽ nhận được json response có thuộc tính token, token được hash với object như bên dưới.
+```json
+// Response
+{
+  "token": string
+}
 ```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```json
+// Hash body
+{
+  "userID": string
+}
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+3. Route **/product/public** có thể truy cập mà không cần token, sau đó trả về chuỗi *public content*
+4. Route **/product/protected** không thể truy cập nếu không có token
+5. Route **/product/protected** có thể truy cập thông qua token gửi kèm trong header Authorization, với định dạng bên dưới, nội dung trả về là *private content of ${userID}*, với userID là ID được hash khi trả về token ở bước 2.
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
+Authorization: "Bearer token"
+```
+6. Người dùng không thể thực hiện bước 5 nếu sử dụng token không hợp lệ.
