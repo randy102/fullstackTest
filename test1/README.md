@@ -47,3 +47,7 @@
 Authorization: "Bearer token"
 ```
 6. Người dùng không thể thực hiện bước 5 nếu sử dụng token không hợp lệ.
+
+<p align="center">
+  <img src="./at/demo1.png" width="350" alt="accessibility text">
+</p>
