@@ -1,4 +1,5 @@
-image: docker/compose:1.25.0-rc1
+image: docker:19.03.0
+
 variables:
   DOCKER_TLS_CERTDIR: ""
 
@@ -12,4 +13,8 @@ test:
   tags:
     - training-test
   script:
-    - docker-compose up --build --abort-on-container-exit
+    - docker network create testnetwork
+    - docker build -t testserver .
+    - docker run --name testserver -d -p 3000:3000 --network testnetwork testserver
+    - sleep 3
+    - docker run --rm -v $(pwd):/usr/src/app --network testnetwork hvphuong98/acexis-ft-test1
