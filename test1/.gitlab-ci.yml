@@ -1,5 +1,4 @@
-image: docker:19.03.0
-
+image: docker/compose:1.25.0-rc1
 variables:
   DOCKER_TLS_CERTDIR: ""
 
@@ -13,8 +12,4 @@ test:
   tags:
     - training-test
   script:
-    - docker build -t testserver .
-    - docker run -d -p 3000:3000 testserver
-    - sleep 3
-    - docker ps
-    - ./at/test1 --host docker --port 3000
+    - docker-compose up --build --abort-on-container-exit
