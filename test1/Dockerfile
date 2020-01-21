@@ -7,4 +7,4 @@ RUN npm install
 RUN npm run build
 EXPOSE 3000
 
-CMD ["PORT=3000", "node", "dist/main.js"]
+CMD ["node", "dist/main.js"]
