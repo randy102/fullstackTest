@@ -17,7 +17,16 @@
 ```
 2. Nếu đăng ký thành công trả về status code 204 thay vì 201
 3. Hai người dùng không được có cùng **username**, nếu đăng ký tài khoản với **username** đã tồn tại trả về status code 409
-4. Mật khẩu được hash
+4. Để nhằm mục đích test thì cần thêm route **GET /user/userID** trả về tất cả thông tin theo mẫu sau
+```json
+{
+  "name": string,
+  "username": string,
+  "password": string,
+  "_id": string
+}
+```
+5. Mật khẩu được hash
 ### Case 3
 1. Người dùng có thể đăng nhập sử dụng route **/auth/login** với body bên dưới.
 ```json
