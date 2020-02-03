@@ -6,7 +6,7 @@
 5. Sử dụng approach schema first (NESTJS docs - [section GraphQL](https://docs.nestjs.com/graphql/quick-start#schema-first)) để sử dụng cho type-checking cho resolver
 ## Mô tả
 Bao gồm các GraphQL Object Type sau:
-```json
+```
 type Post {
   id: ID
   title: String
@@ -25,7 +25,7 @@ type Mutation {
 }
 ```
 với *PostCategory* là enum chỉ nhận các giá trị sau đây: *PROMOTIONAL, CONTROVERSIAL, LIFESTYLE* và *PERSONAL*. *PostInput* là kiểu input với các thuộc tính title (String), content(String) và categories là mảng các giá trị (chỉ nhận các giá trị thuộc PostCategory), **tất cả các thuộc tính đều bắt buộc**.
-```json
+```
 type Author {
   id: String
   firstName: String
@@ -58,7 +58,7 @@ với kiểu AuthorInput bao gồm các thuộc tính *firstName(String)*, *last
 Header: Bearer token
 ```
 với object được hashed (với secret code là **s3cr3t**) như sau, sử dụng authorID này để dùng cho thuộc tính *createdBy* khi tạo Post
-```json
+```
 // authorID này sẽ được lấy từ case1
 {
   authorID: string
@@ -67,7 +67,7 @@ với object được hashed (với secret code là **s3cr3t**) như sau, sử d
 2. Không tạo được *Post* nếu request không cung cấp token thông qua *authorization header*
 3. Khi nhận được response, createdBy phải được resolved và link tới type *Author* theo *authorID*
 
-```json
+```
 {
   createPost {
     createdBy: {
