@@ -5,7 +5,7 @@
 4. Các phương thức phổ biến POST, GET và truyền tham số theo url
 ## Yêu cầu
 ### Case 1
-1. Ứng dụng có thể chạy được trên port được cấu hình trong file .env
+1. Ứng dụng có thể chạy được
 ### Case 2
 1. Người dùng có thể đăng ký tài khoản khi thực hiện phương thức **POST** đến route **auth/register** với nội dung json sau
 ```json
