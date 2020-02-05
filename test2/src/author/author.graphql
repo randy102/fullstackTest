@@ -1,0 +1,20 @@
+type Author {
+  id: String
+  firstName: String
+  lastName: String
+  dob: Float
+}
+
+type Query {
+  author(authorID: String!): Author
+}
+
+type Mutation {
+  createAuthor(author: AuthorInput!): Author
+}
+
+input AuthorInput{
+    firstName: String!
+    lastName: String!
+    dob: Float!
+}
