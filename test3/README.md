@@ -18,10 +18,6 @@ type Subscription {
   chat(roomID: String!): Message
 }
 
-type Query {
-  foo: String
-}
-
 type Mutation {
   createMessage(message: MessageInput): Message
 }
