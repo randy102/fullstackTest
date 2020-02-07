@@ -34,7 +34,7 @@ input MessageInput {
 
 ### Đối tượng người dùng
 Có 5 đối tượng người dùng như sau: *user-A*, *user-B*, *user-C*, *user-D* và *user-E*
-Tất cả các user trên đều có token (ngoại trừ user-D) với object được hash (với secret key là sup3rs3c) dưới dạng sau:
+Tất cả các user trên đều có token (ngoại trừ user-D) với object được hash (với secret key là *sup3rs3cr3t*) dưới dạng sau:
 ```
 {
   userID: string
