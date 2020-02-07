@@ -38,7 +38,7 @@ input MessageInput {
 
 ### Đối tượng người dùng
 Có 5 đối tượng người dùng như sau: *user-A*, *user-B*, *user-C*, *user-D* và *user-E*
-Tất cả các user trên đều có token (ngoại trừ user-D) với object được hash dưới dạng sau:
+Tất cả các user trên đều có token (ngoại trừ user-D) với object được hash (với secret key là sup3rs3c) dưới dạng sau:
 ```
 {
   userID: string
@@ -47,7 +47,7 @@ Tất cả các user trên đều có token (ngoại trừ user-D) với object 
 ```
 với **userID** là user của người đó và **privileges** ở đây được hiểu là quyền của user (**lưu ý là trong bài test để đơn giản ta mới lưu quyền của người dùng vào token ở phía client, trong thực tế thì ta sẽ lưu quyền của người dùng vào database, và truy vấn quyền này mỗi khi người dùng thực hiện request**) và **privileges** chứa mã phòng mà người này được phép nhận tin nhắn.
 
-Ví dụ: Người dùng A có mã token với object được hash như sau:
+Ví dụ: Người dùng A có mã token với object được hash (với secret key là *sup3rs3cr3t*) như sau:
 ```
 {
   userID: "useraisauser",
