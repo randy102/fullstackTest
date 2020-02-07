@@ -14,10 +14,6 @@ type Message {
   createdAt: Float
 }
 
-type Subscription {
-  chat(roomID: String!): Message
-}
-
 type Mutation {
   createMessage(message: MessageInput): Message
 }
