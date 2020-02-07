@@ -1,8 +1,8 @@
-import { Resolver, Args, Context, ResolveProperty, Parent } from '@nestjs/graphql';
-import { UseGuards } from '@nestjs/common';
+import { Resolver, Args, Context, ResolveProperty, Parent, Mutation } from '@nestjs/graphql';
+import { UseGuards, Query } from '@nestjs/common';
 import { AuthGuard } from 'src/auth.guard';
 import { AuthorService } from 'src/author/author.service';
-
+import {uuid} from "uuidv4"
 @Resolver('Post')
 export class PostResolver {
    
@@ -12,13 +12,15 @@ export class PostResolver {
     }
 
     @UseGuards(AuthGuard)
-    createPost(@Args() {title, content}, @Args('categories') categories: PostCategory, @Context('author') author){
+    @Mutation()
+    createPost(@Args('postInput') postInput, @Context('author') author: string){
         const post = {
-            id: new Date().toISOString(),
-            title,
-            content,
+            id: uuid(),
+            title: postInput.title,
+            content: postInput.content,
+            categories: postInput.categories,
             createdAt: new Date().getTime(),
-            author
+            author,
         }
         this.posts.push(post);
         return post;
@@ -28,6 +30,8 @@ export class PostResolver {
     createdBy(@Parent() {author}){
         return this.authorService.get(author);
     }
+
+    
 }
 
 enum  PostCategory{
@@ -35,4 +39,10 @@ enum  PostCategory{
     CONTROVERSIAL = "CONTROVERSIAL",
     LIFESTYLE = "LIFESTYLE",
     PERSONAL= "PERSONAL"
+}
+
+interface PostInput{
+    title: string;
+    content: string;
+    categories: PostCategory[];
 }

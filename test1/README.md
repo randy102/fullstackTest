@@ -13,7 +13,7 @@
   "name": string,
   "password": string,
   "username": string
-}
+} 
 ```
 2. Nếu đăng ký thành công trả về status code 204 thay vì 201
 3. Hai người dùng không được có cùng **username**, nếu đăng ký tài khoản với **username** đã tồn tại trả về status code 409

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as jwt from "jsonwebtoken";
+import {uuid} from "uuidv4";
 @Injectable()
 export class AuthorService {
     authors: any[];
@@ -9,7 +10,7 @@ export class AuthorService {
 
     create({firstName, lastName, dob}){
         if(firstName && lastName && dob){
-            const author = {firstName, lastName, dob, id: new Date().toISOString()};
+            const author = {firstName, lastName, dob, id: uuid()};
             this.authors.push(author);
             return author;
         }
@@ -17,7 +18,8 @@ export class AuthorService {
     }
 
     get(id){
-        return this.authors.find(author => author.id === id);
+        const author = this.authors.find(author => author.id === id);
+        return author;
     }
 
     verify(token){

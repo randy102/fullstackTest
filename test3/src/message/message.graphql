@@ -1,0 +1,25 @@
+type Message {
+  _id: ID
+  createdBy: String
+  roomID: String
+  content: String
+  createdAt: Float
+}
+
+type Query{
+  _null: String!
+}
+
+type Subscription {
+  messageCreated(roomID: String!): Message
+}
+
+type Mutation {
+  createMessage(message: MessageInput): Message
+}
+
+
+input MessageInput {
+  content: String!
+  roomID: String!
+}

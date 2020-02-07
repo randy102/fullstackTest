@@ -9,12 +9,14 @@ export class AuthGuard implements CanActivate {
 
   canActivate(context: ExecutionContext) {
     const gqlCtx = GqlExecutionContext.create(context);
-
+    
     try{
-      const { Authorization } = gqlCtx.getContext().request.headers;
-      if(!Authorization) throw new Error();
+      const { authorization } = gqlCtx.getContext().request.headers;
+      if(!authorization) throw new Error();
 
-      const author = this.authorService.verify(Authorization.split(" ")[1]);
+      const author = this.authorService.verify(authorization.split(" ")[1]);
+      if(!author) throw new Error();
+
       gqlCtx.getContext().author = author['authorID'];
       return true;
     }

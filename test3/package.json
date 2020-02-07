@@ -20,10 +20,18 @@
     "@nestjs/common": "^6.7.2",
     "@nestjs/config": "0.0.9",
     "@nestjs/core": "^6.7.2",
+    "@nestjs/graphql": "^6.5.4",
     "@nestjs/platform-express": "^6.7.2",
+    "@types/jsonwebtoken": "^8.3.7",
+    "apollo-server-express": "^2.10.0",
+    "graphql": "^14.6.0",
+    "graphql-subscriptions": "^1.1.0",
+    "graphql-tools": "^4.0.6",
+    "jsonwebtoken": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "uuidv4": "^6.0.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
