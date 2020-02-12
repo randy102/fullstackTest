@@ -18,3 +18,5 @@ test:
     - docker run --name testserver -d -p 3000:3000 --network testnetwork testserver
     - sleep 3
     - docker run --rm -v $(pwd):/usr/src/app --network testnetwork hvphuong98/acexis-ft-test1
+  after_script:
+    - docker logs testserver
