@@ -67,7 +67,7 @@ thì các tin nhắn với **roomID** là "bar" thì người này sẽ không n
 1. User-A có thê tạo message với roomID có giá trị room1 với header authorization
 2. User-B có thể subscribe tới tất cả các message với roomID có giá trị room1, khi user-A gửi message với roomID là room1, thì User-B nhận được các tin nhắn đó lập tức.
 3. User-C có thể subscribe tới tất cả các message với roomID có giá trị là room2, vì không có ai gửi tin nhắn nên User-C không nhận được tin nhắn nào
-4. User-D không sử dụng header nên không thể subscribe tới bất kì tin nhắn với bất kỳ roomID nào (trả về lỗi)
+4. User-D không sử dụng header nên không thể subscribe tới bất kì tin nhắn với bất kỳ roomID nào (trả về lỗi - return false chứ không throw)
 5. User-E có token với **privileges** không bao gồm _room1_ nhưng vẫn subscribe đến message với roomID là _room1_, người dùng User-E dù có token vẫn không thể nhận được message vì không có quyền (vẫn thực hiện subscription thành công nhưng không nhận được tin nhắn).
 
 <p align="center">
