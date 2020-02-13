@@ -11,6 +11,7 @@
 Bạn sẽ phải xây dựng một ứng dụng cho phép người dùng upload file sử dụng route **/file/upload**
 
 Lưu ý:
+- **Môi trường test là môi trường linux, các bạn lưu ý lưu file thì lưu dưới thư mục /tmp. Ví dụ: file A(id là 6b7a7e4e7195) khi lưu sẽ là /tmp/6b7a7e4e7195**
 - Tập tin upload chỉ có kích thước tối đa là 30 KiB (Kibibyte - IEC)
 - Tập tin upload chỉ có thể là file có định dạng .png
 - Khi người dùng tải về thành công trả về status code 200
