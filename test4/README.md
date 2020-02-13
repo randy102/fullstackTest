@@ -30,6 +30,7 @@ Lưu ý:
   }
 ```
 với originalname là tên của file người dùng upload, id là tên file lưu trên server, size là kích thước của file tính theo đơn vị byte.
+
 2. Người dùng có thể download file vừa upload khi gửi yêu cầu tới route sau **file/download/id?={fileID}**.
 3. Người dùng không thể update một file có extension là  **.png** có kích thước lớn hơn **30 KiB**.
 4. Người dùng không thể update một bash file có extension là **.sh**. Yêu cầu trả về status code là 415
