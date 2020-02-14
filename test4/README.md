@@ -8,7 +8,7 @@
 
 ## Mô tả
 
-Bạn sẽ phải xây dựng một ứng dụng cho phép người dùng upload file sử dụng route **/file/upload**
+Bạn sẽ phải xây dựng một ứng dụng cho phép người dùng upload file sử dụng route **/file/upload**, lúc up ảnh qua form với multipart/form-data thì form name là **file**
 
 Lưu ý:
 - **Môi trường test là môi trường linux, các bạn lưu ý lưu file thì lưu dưới thư mục /tmp. Ví dụ: file A(id là 6b7a7e4e7195) khi lưu sẽ là /tmp/6b7a7e4e7195**
