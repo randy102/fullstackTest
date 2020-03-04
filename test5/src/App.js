@@ -16,6 +16,7 @@ function App () {
           file routes config (khi thêm bớt component thì chỉ sửa file config)
           không cần sửa code tại đây
       */}
+
       {
         routes.map((config) => {
           return <ExampleComponent />
