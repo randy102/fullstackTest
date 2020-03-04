@@ -22,4 +22,4 @@ test:
     - docker build -t testserver .
     - docker run --name testserver -d -p 3000:3000 --network testnetwork testserver
     - sleep 3
-    - docker run --rm --name test5 -v $(pwd)/videos:/test/cypress/videos --network=testnetwork hvphuong98/acexis-ft-test5
+    - docker run --rm --name test5 -e U=$GITLAB_USER_LOGIN -v $(pwd)/videos:/test/cypress/videos --network=testnetwork hvphuong98/acexis-ft-test5
