@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 export default function ProtectedRoute({ comp: Component, ...rest }) {
-  console.log(Component)
+  rest = rest[0]
 
   function isAuthenticated() {
     const token = localStorage.getItem('token')
@@ -13,7 +13,7 @@ export default function ProtectedRoute({ comp: Component, ...rest }) {
 
   return (
    <div>
-     {isAuthenticated() ? <Component/> : <Redirect to="/login" />}
+     {isAuthenticated() ? <Component {...rest}/> : <Redirect to="/login" />}
    </div>
     
   )

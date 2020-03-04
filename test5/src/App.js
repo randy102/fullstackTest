@@ -5,8 +5,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <Switch>
-      <Suspense fallback={<div>Loading... </div>}>
+    <Suspense fallback={<div>Loading... </div>}>
+      <Switch>
         {routes.map(route => {
           let comp = React.lazy(() => import(`./pages/${route.component}`));
 
@@ -17,7 +17,7 @@ function App() {
                 key={route.path}
                 path={route.path}
                 title={route.title}
-                render={(...props) => <ProtectedRoute comp={comp} {...props}/>}
+                render={(...props) => <ProtectedRoute comp={comp} {...props} />}
               />
             );
 
@@ -31,8 +31,8 @@ function App() {
             />
           );
         })}
-      </Suspense>
-    </Switch>
+      </Switch>
+    </Suspense>
   );
 }
 
