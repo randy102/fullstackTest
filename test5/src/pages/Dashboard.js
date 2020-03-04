@@ -1,8 +1,9 @@
 import React from 'react'
-
-const Dashboard = () => {
+import {Menu} from '../components/Menu'
+const Dashboard = (props) => {
   return (
     <div>
+    <Menu {...props}/>
       <p data-test='db__welcome'>
         Welcome to dashboard page
       </p>

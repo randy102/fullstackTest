@@ -8,13 +8,13 @@ export default [
     isProtected: false
   },
   {
-    title: 'Dashboard | Sample App',
+    title: 'Dashboard',
     component: 'Dashboard',
     path: '/dashboard',
     isProtected: true
   },
   {
-    title: 'Setting | Sample App',
+    title: 'Setting',
     component: 'Setting',
     path: '/setting',
     isProtected: true
@@ -30,5 +30,17 @@ export default [
     component: 'FunctionFoo',
     path: '/functions/foo',
     isProtected: true
+  },
+  {
+    title: 'Dashboard',
+    component: 'Dashboard',
+    path: '/',
+    isProtected: true
+  },
+  {
+    title: 'Dashboard',
+    component: 'NotFound',
+    path: '/*',
+    isProtected: false
   }
 ]

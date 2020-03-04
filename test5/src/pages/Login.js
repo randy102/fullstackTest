@@ -1,16 +1,32 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
 const Login = (props) => {
+  function login(e){
+    e.preventDefault()
+
+    const passwordInp = document.querySelector('[data-test="login__pwd"]')
+
+    if(passwordInp.value === "123"){
+      localStorage.setItem("token","authenticated")
+      props.history.push('/dashboard')
+    }
+    else{
+      e.target.reset()
+    }
+  }
+
+  const token = localStorage.getItem("token")
+  console.log(token)
+  if(token && token === "authenticated") return <Redirect to="/dashboard"/>
+
   return (
-    <div>
-      {/* 
-      TODO: Your login page implementation
-      */}
-      <form>
+   
+      <form onSubmit={login}>
         <input data-test='login__pwd' type='password' />
         <button data-test='login__submit' type='submit'>login</button>
       </form>
-    </div>
+   
   )
 }
 

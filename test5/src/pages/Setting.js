@@ -1,10 +1,22 @@
-import React from 'react'
+import React from "react";
+import * as queryString from "query-string";
+import { Menu } from "../components/Menu";
+const Setting = props => {
+  let params = queryString.parse(props.location.search);
 
-const Setting = () => {
-  return <div>
-    {/* Setting page - Section: FooSection */}
-    {/* Setting page */}
-  </div>
-}
+  function render() {
+    if (params["section"]) {
+      return `Setting page - Section: ${params["section"]}`;
+    }
+    return "Setting page";
+  }
 
-export default Setting
+  return (
+    <div>
+      <Menu {...props} />
+      {render()}
+    </div>
+  );
+};
+
+export default Setting;

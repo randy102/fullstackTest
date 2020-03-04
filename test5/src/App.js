@@ -1,29 +1,39 @@
-import React from 'react'
-import routes from './config/routes'
+import React, { Suspense } from "react";
+import { Switch, Route } from "react-router-dom";
+import routes from "./config/routes";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-const ExampleComponent = () => {
+function App() {
   return (
-    <div>
-      Example Component
-      </div>
-  )
+    <Switch>
+      <Suspense fallback={<div>Loading... </div>}>
+        {routes.map(route => {
+          let comp = React.lazy(() => import(`./pages/${route.component}`));
+
+          if (route.isProtected)
+            return (
+              <Route
+                exact
+                key={route.path}
+                path={route.path}
+                title={route.title}
+                render={(...props) => <ProtectedRoute comp={comp} {...props}/>}
+              />
+            );
+
+          return (
+            <Route
+              exact
+              key={route.path}
+              path={route.path}
+              title={route.title}
+              component={comp}
+            />
+          );
+        })}
+      </Suspense>
+    </Switch>
+  );
 }
 
-function App () {
-  return (
-    <div>
-      {/* Bắt buộc phải sử dụng dynamic import dựa theo
-          file routes config (khi thêm bớt component thì chỉ sửa file config)
-          không cần sửa code tại đây
-      */}
-
-      {
-        routes.map((config) => {
-          return <ExampleComponent />
-        })
-      }
-    </div>
-  )
-}
-
-export default App
+export default App;
