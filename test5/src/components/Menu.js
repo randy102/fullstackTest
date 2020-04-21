@@ -11,8 +11,8 @@ export const Menu = (props) => {
     <div>
       <h3>Menu</h3>
       <ul id='menu'>
-        <li><Link to="/dashboard" replace={true}>Dashboard</Link></li>
-        <li><Link to="/setting" replace={true}>Setting</Link></li>
+        <li><Link to="/dashboard" replace={true}>/dashboard</Link></li>
+        <li><Link to="/setting" replace={true}>/setting</Link></li>
         <li><button onClick={logout} data-test='logout__btn'>Logout</button></li>
       </ul>
     </div>

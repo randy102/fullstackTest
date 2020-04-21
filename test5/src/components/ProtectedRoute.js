@@ -6,7 +6,7 @@ export default function ProtectedRoute({ comp: Component, ...rest }) {
 
   function isAuthenticated() {
     const token = localStorage.getItem('token')
-    if(token && token === "authenticated")
+    if(token)
       return true
     return false
   }

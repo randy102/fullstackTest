@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {uuid} from "uuidv4"
+import * as jwt from "jsonwebtoken"
 @Injectable()
 export class MessageService {
     messages: any[];
@@ -19,4 +20,5 @@ export class MessageService {
         return message;   
     }
 
+   
 }

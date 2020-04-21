@@ -10,16 +10,24 @@ const pubSub = new PubSub();
 export class MessageResolver {
     constructor(private readonly messageService:  MessageService){}
 
-    @Subscription()
-    messageCreated(@Args() {roomID}){
-        return pubSub.asyncIterator(roomID);
+    @Subscription("messageCreated",{
+        filter: (payload, variables,context)=>{
+            console.log(context);
+            const privileges: string[] = context.request.privileges;
+            const roomID: string = payload.messageCreated.roomID;
+            if(privileges.includes(roomID) && roomID === variables.roomID) return true;
+            return false;
+        }
+    })
+    messageCreated(){
+        return pubSub.asyncIterator("chat");
     }
 
     @Mutation()
     createMessage(@Args('message') {content, roomID}, @Context('user') {userID, privileges} : UserContext){
         if(privileges.includes(roomID)){
             const messageCreated = this.messageService.createMessage({content, roomID,userID});
-            pubSub.publish(roomID,{messageCreated});
+            pubSub.publish("chat",{messageCreated});
             return messageCreated;
         }
         return null;

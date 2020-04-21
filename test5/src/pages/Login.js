@@ -17,8 +17,8 @@ const Login = (props) => {
   }
 
   const token = localStorage.getItem("token")
-  console.log(token)
-  if(token && token === "authenticated") return <Redirect to="/dashboard"/>
+
+  if(token) return <Redirect to="/dashboard"/>
 
   return (
    
